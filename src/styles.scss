@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+@use "app/variables";
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: variables.$body-font;
+}
+
+body {
+  background-color: variables.$background-color;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: variables.$background-color;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: variables.$scroll-border-radius;
+    background: variables.$button-color;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: variables.$button-color;
+  }
+}
+
+@font-face {
+  font-family: 'Tabac Glam Semi Bold';
+  src: url('fonts/TabacGlamG2SemiBold.otf') format('opentype');
+}

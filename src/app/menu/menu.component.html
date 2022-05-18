@@ -1,0 +1,28 @@
+<div class="products">
+  <app-banner></app-banner>
+  <div class="products__menu">
+    <div class="products__title">
+      <h1>Menu</h1>
+      <div class="products__filter">
+        <p class="products__check">
+          <input type="checkbox" [(ngModel)]="noFilter" (ngModelChange)="showAllItems($event)">
+          All Items
+        </p>
+        <p class="products__toggle">
+          <span>Non Veg</span>
+          <label class="switch" [ngClass]="noFilter ? 'nofilter' : ''">
+            <input type="checkbox" [(ngModel)]="typeFilter" (change)="filterCategory($event)" checked>
+            <span class="slider round"></span>
+          </label>
+          <span>Veg</span>
+        </p>
+      </div>
+    </div>
+    <div class="products__search">
+      <input type="text" [formControl]="searchTerm" placeholder="Search Name or Category...">
+    </div>
+  </div>
+  <div class="products__cards">
+    <app-product *ngFor="let item of filteredItems | async" [product]="item" (productAdded)="addProductToCart($event)"></app-product>
+  </div>
+</div>

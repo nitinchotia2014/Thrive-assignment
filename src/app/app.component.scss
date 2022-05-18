@@ -1,0 +1,244 @@
+@use "variables";
+
+.container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  padding: 20px;
+  column-gap: 20px;
+
+  .float-btn {
+    display: none;
+  }
+}
+
+.modal-container {
+  background: rgba(0, 0, 0, 0.75);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+
+  &__modal {
+    background: #fff;
+    width: 70vw;
+    height: 75vh;
+    border-radius: variables.$card-border-radius;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+  }
+
+  &__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    border-radius: variables.$circle-border-radius;
+    cursor: pointer;
+  }
+
+  &__illustration {
+    padding: 20px;
+
+    &__image {
+      width: 100%;
+    }
+
+    &__text {
+      text-align: center;
+      font-size: variables.$header-font;
+      margin-top: 50px;
+      font-family: 'Quicksand', sans-serif;
+      color: variables.$button-color;
+    }
+  }
+
+  &__order-details {
+    padding: 20px;
+
+    &__title {
+      font-size: variables.$header-font;
+      font-family: 'Quicksand', sans-serif;
+      color: variables.$button-color;
+    }
+
+    &__details {
+      height: calc(75vh - 120px);
+      overflow-y: auto;
+
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: variables.$background-color;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: variables.$scroll-border-radius;
+        background: variables.$button-color;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background: variables.$button-color;
+      }
+    }
+
+    &__table {
+      width: 100%;
+      font-family: 'Quicksand', sans-serif;
+      border-collapse: collapse;
+
+      tr {
+        height: 56px;
+        border: none;
+        border-bottom: 1px solid variables.$button-color;
+
+        td {
+          text-align: center;
+
+          .product-name {
+            display: flex;
+            align-items: center;
+            column-gap: 20px;
+          }
+
+          &:nth-child(2) {
+            text-align: left;
+          }
+
+          img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: variables.$circle-border-radius;
+          }
+        }
+
+        &.footer {
+          td {
+            text-align: left !important;
+            padding: 0 20px;
+            font-weight: bold;
+
+            &:nth-child(2) {
+              text-align: center !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (max-width: 713px) {
+  .container {
+    position: relative;
+
+    app-cart {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      z-index: 999;
+    }
+
+    .float-btn {
+      width: 50px;
+      height: 50px;
+      background-color: variables.$button-color;
+      color: #fff;
+      border-radius: variables.$circle-border-radius;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      cursor: pointer;
+      box-shadow: 0px 0px 10px 3px #4b4b4b;
+
+      &__badge {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: #fff;
+        color: #000;
+        font-size: variables.$body-font;
+        border-radius: variables.$circle-border-radius;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 0;
+        right: 0;
+      }
+
+      &__image {
+        width: 30px;
+        height: 30px;
+      }
+
+      &__close {
+        font-size: variables.$product-price-font;
+      }
+    }
+  }
+
+  .modal-container {
+    z-index: 999;
+
+    &__modal {
+      width: 90vw;
+      height: 90vh;
+      grid-template-columns: 1fr;
+    }
+
+    &__illustration {
+      padding: 60px;
+    }
+
+    &__order-details {
+      padding: 20px 60px;
+
+      &__details {
+        height: calc(35vh - 120px);
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .modal-container {
+    z-index: 999;
+
+    &__modal {
+      width: 90vw;
+      height: 90vh;
+      grid-template-columns: 1fr;
+    }
+
+    &__illustration {
+      padding: 20px;
+    }
+
+    &__order-details {
+      display: none;
+    }
+  }
+}

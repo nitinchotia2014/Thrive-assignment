@@ -1,0 +1,43 @@
+<div class="cart">
+  <h1 class="cart__title">My Cart</h1>
+
+  <div class="cart__items-container">
+    <ng-container *ngIf="!cartItems.length">
+      <img src="assets/empty-cart.png" class="cart__empty" alt="">
+    </ng-container>
+
+    <ng-container *ngIf="cartItems.length">
+      <div class="cart__products" *ngFor="let item of cartItems">
+        <img class="cart__products__image" [src]="item.image ? item.image : './assets/placeholder-food.png'" alt="{{ item.name }}">
+        <div class="cart__products__details">
+          <div class="cart__products__details__title">
+            <img class="cart__products__details__type" *ngIf="item.item_type === 'veg'" src="./assets/veg.svg" alt="">
+            <img class="cart__products__details__type" *ngIf="item.item_type === 'non-veg'" src="./assets/non-veg.png" alt="">
+            <p class="cart__products__details__name">{{ item.name }}</p>
+          </div>
+          <div class="cart__products__details__price">
+            <span>{{ item.price | currency:'INR' }}</span>
+            <span><img src="assets/close.svg" alt=""></span>
+            <span>{{ item.num }}</span>
+          </div>
+        </div>
+        <div class="cart__products__btns">
+          <button class="cart__products__btn cart__products__btn--left" (click)="addProduct(item)">+</button>
+          <button class="cart__products__btn cart__products__btn--right" (click)="removeProduct(item)">-</button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="cart__checkout" *ngIf="cartItems.length">
+    <p class="cart__checkout__amount">
+      <b>SubTotal</b>
+      <span>{{ getSubTotal(cartItems) | currency: 'INR' }}</span>
+    </p>
+    <p class="cart__checkout__amount">
+      <b>Total <small>(incl Tax)</small></b>
+      <span>{{ getTotal(cartItems) | currency: 'INR' }}</span>
+    </p>
+    <button class="cart__checkout__btn" (click)="checkout(cartItems)">Checkout</button>
+  </div>
+</div>

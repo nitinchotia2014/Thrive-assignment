@@ -1,0 +1,213 @@
+@use '../variables';
+
+.cart {
+  background-color: variables.$card-color;
+  border-radius: variables.$card-border-radius;
+  box-shadow: 0px 0px 20px 5px #f2f2f2;
+  position: fixed;
+  width: calc(25vw - 10px);
+  height: calc(100vh - 40px);
+
+  &__title {
+    font-family: 'Playfair Display', sans-serif;
+    margin: 0 20px;
+    padding: 30px 0;
+    border-bottom: 1px solid variables.$button-color;
+  }
+
+  &__empty {
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__items-container {
+    padding: 60px 20px 20px 20px;
+    height: calc(100vh - 380px);
+    overflow: auto;
+    position: relative;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: variables.$background-color;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: variables.$scroll-border-radius;
+      background: variables.$button-color;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: variables.$button-color;
+    }
+  }
+
+  &__products {
+    position: relative;
+    margin-left: 40px;
+    padding: 20px 20px 20px 100px;
+    background-color: variables.$cart-card-color;
+    border-radius: variables.$card-border-radius;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    box-shadow: 0px 0px 20px 5px #f2f2f2;
+
+    &__image {
+      position: absolute;
+      left: -35px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: variables.$circle-border-radius;
+      border: none;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+    }
+
+    &__details {
+      &__title {
+        display: flex;
+        align-items: center;
+        margin: 0 0 10px;
+      }
+
+      &__type {
+        width: variables.$title-font;
+        height: variables.$title-font;
+        margin-right: 5px;
+      }
+
+      &__name {
+        margin: 0;
+        font-family: 'Quicksand', sans-serif;
+        font-size: variables.$title-font;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      &__price {
+        font-family: 'Fira Code', monospace;
+        display: flex;
+        align-items: center;
+
+        span {
+          margin-right: 5px;
+          display: flex;
+          align-items: center;
+
+          img {
+            width: 15px;
+            height: 15px;
+          }
+        }
+      }
+    }
+
+    &__btns {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__btn {
+      background-color: variables.$button-color;
+      border: none;
+      border-radius: variables.$circle-border-radius;
+      width: 25px;
+      height: 25px;
+      color: #fff;
+      font-size: variables.$title-font;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      &--left {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      &--right {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        margin-left: 1px;
+      }
+    }
+  }
+
+  &__checkout {
+    border-top: 1px solid variables.$button-color;
+    margin: 0 20px;
+
+    &__amount {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      font-family: 'Quicksand', sans-serif;
+
+      span:last-child {
+        font-family: 'Fira Code', monospace;
+      }
+    }
+
+    &__btn {
+      padding: 15px 60px;
+      background: variables.$button-color;
+      border: none;
+      border-radius: variables.$card-border-radius;
+      color: #fff;
+      font-size: variables.$header-font;
+      margin: 0 auto;
+      display: block;
+      cursor: pointer;
+    }
+  }
+}
+
+@media only screen and (max-width: 1600px) {
+  .cart {
+    &__items-container {
+      height: calc(100vh - 375px);
+      padding-top: 40px;
+    }
+
+    &__products {
+      margin-left: 35px;
+      padding: 10px 10px 10px 60px;
+
+      &__image {
+        width: 90px;
+        height: 90px;
+        left: -40px;
+      }
+
+      &__details {
+        &__name {
+          font-size: variables.$body-font
+        }
+
+        &__price {
+          font-size: variables.$body-font
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 713px) {
+  .cart {
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+  }
+}

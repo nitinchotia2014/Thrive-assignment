@@ -1,0 +1,11 @@
+<div class="banner">
+  <ng-container *ngFor="let image of carouselImages; let i = index">
+    <img class="banner__image" [src]="image" alt="" *ngIf="currentSlide == i">
+  </ng-container>
+  <button class="banner__btn banner__btn--prev" *ngIf="currentSlide != 0" (click)="prevImg()">
+    <img class="banner__btn__image banner__btn__image--rotate" src="assets/next.svg" alt="">
+  </button>
+  <button class="banner__btn banner__btn--next" *ngIf="currentSlide != (carouselImages.length - 1)" (click)="nextImg()">
+    <img class="banner__btn__image" src="assets/next.svg" alt="">
+  </button>
+</div>

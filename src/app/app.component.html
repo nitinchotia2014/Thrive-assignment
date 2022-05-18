@@ -1,0 +1,54 @@
+<div class="container">
+  <app-menu></app-menu>
+  <app-cart [style.display]="view ? 'block' : 'none'" (checkoutClicked)="checkoutCart($event)"></app-cart>
+
+  <button class="float-btn" (click)="viewCart()">
+    <span *ngIf="!view" class="float-btn__badge">{{ getQuantity(cart) }}</span>
+    <img class="float-btn__image" *ngIf="!view" src="assets/cart.svg" alt="">
+    <span class="float-btn__close" *ngIf="view">X</span>
+  </button>
+</div>
+
+<div class="modal-container" *ngIf="viewModal">
+  <div class="modal-container__modal">
+    <button class="modal-container__close" (click)="closeModal()">
+      <img src="assets/close.svg" alt="">
+    </button>
+    <div class="modal-container__illustration">
+      <img class="modal-container__illustration__image" src="assets/order.svg" alt="">
+      <p class="modal-container__illustration__text">Order Placed Successfully</p>
+    </div>
+    <div class="modal-container__order-details">
+      <p class="modal-container__order-details__title">Order Details</p>
+      <div class="modal-container__order-details__details">
+        <table class="modal-container__order-details__table">
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+          </tr>
+          <tr *ngFor="let item of cartItems">
+            <td>
+              <div class="product-name">
+                <img [src]="item.image ? item.image : './assets/placeholder-food.png'" alt="">
+                <span>{{ item.name }}</span>
+              </div>
+            </td>
+            <td>{{ item.price | currency: 'INR' }}</td>
+            <td>{{ item.num }}</td>
+            <td>{{ item.total | currency: 'INR' }}</td>
+          </tr>
+          <tr class="footer">
+            <td colspan="3">SubTotal</td>
+            <td>{{ getSubTotal(cartItems) | currency: 'INR' }}</td>
+          </tr>
+          <tr class="footer">
+            <td colspan="3">Total</td>
+            <td>{{ getTotal(cartItems) | currency: 'INR' }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

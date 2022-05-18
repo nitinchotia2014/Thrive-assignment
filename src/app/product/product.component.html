@@ -1,0 +1,12 @@
+<div class="card" title="{{ product.name }}">
+    <img class="card__type" *ngIf="product.item_type === 'veg'" src="./assets/veg.svg" alt="">
+    <img class="card__type" *ngIf="product.item_type === 'non-veg'" src="./assets/non-veg.png" alt="">
+    <img class="card__image" [src]="product.image ? product.image : './assets/placeholder-food.png'" alt="{{ product.name }}">
+    <p class="card__title">{{ product.name }}</p>
+    <p class="card__description card__description--category">{{ product.category }}</p>
+    <p class="card__description">{{ product.description }}</p>
+    <div class="card__price">
+        <span>{{ product.price | currency:'INR' }}</span>
+        <button class="card__btn" (click)="addProductToCart(product)">Add</button>
+    </div>
+</div>
